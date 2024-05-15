@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdsContentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CooperativeBranchController;
 use App\Http\Controllers\CooperativeCenterController;
 use App\Http\Controllers\GroupModulController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\ModulCooperativeController;
+use App\Http\Controllers\NewsCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +35,9 @@ Route::group([
     Route::resource('pusat-koperasi', CooperativeCenterController::class);
     Route::resource('cabang-koperasi', CooperativeBranchController::class);
     Route::resource('modul-koperasi', ModulCooperativeController::class);
+    Route::resource('contact', ContactController::class);
+    Route::resource('ads', AdsContentController::class);
+    Route::resource('news-category', NewsCategoryController::class);
 });
 
 

@@ -49,4 +49,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Cooperative_Center', 'user_id');
     }
+    public function cooperative_branches()
+    {
+        return $this->hasMany('App\Models\Cooperative_Branch', 'user_id');
+    }
 }
