@@ -9,6 +9,7 @@ use App\Http\Controllers\GroupModulController;
 use App\Http\Controllers\ModulController;
 use App\Http\Controllers\ModulCooperativeController;
 use App\Http\Controllers\NewsCategoryController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,7 @@ Route::group([
     Route::resource('contact', ContactController::class);
     Route::resource('ads', AdsContentController::class);
     Route::resource('news-category', NewsCategoryController::class);
+    Route::resource('news', NewsController::class);
 });
 
 

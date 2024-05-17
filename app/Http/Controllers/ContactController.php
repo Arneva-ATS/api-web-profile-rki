@@ -53,7 +53,7 @@ class ContactController extends Controller
             $contact_update->save();
             return response()->json([
                 'response_code' => '00',
-                'response_message' => 'Berhasil update pusat koperasi',
+                'response_message' => 'Berhasil update kontak!',
                 'data' => $contact_update
             ], 200);
         } catch (\Throwable $err) {

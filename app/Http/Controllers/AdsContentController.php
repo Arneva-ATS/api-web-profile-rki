@@ -21,7 +21,7 @@ class AdsContentController extends Controller
                 'title' => 'required',
                 'content' => 'required',
                 'image' => 'required',
-                'url' => 'url',
+                'url' => 'required',
                 'modul_id' => 'required',
             ]);
             $data = new AdsContent;
@@ -32,7 +32,7 @@ class AdsContentController extends Controller
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $image_extension = $image->getClientOriginalExtension();
-                $image_name = time() . '.' . $image_extension;
+                $image_name = 'koperasi_ads_' . time() . rand(1, 100) . '.' . $image_extension;;
                 $image_folder = '/photo/ads/';
                 $image_location = $image_folder . $image_name;
                 try {
@@ -66,16 +66,12 @@ class AdsContentController extends Controller
                 'title' => 'required',
                 'content' => 'required',
                 'image' => 'required',
-                'url' => 'url',
+                'url' => 'required',
                 'modul_id' => 'required',
             ]);
 
             $ads_update = AdsContent::findOrFail($id);
-            $ads_update->update(['title' => $request->title, 'content' => $request->content, 'url' => $request->url]);
-            if ($request->has('modul_id')) {
-                $ads_update->modul_id = $request->modul_id;
-            }
-            $ads_update->save();
+            $ads_update->update(['title' => $request->title, 'content' => $request->content, 'url' => $request->url, $ads_update->modul_id = $request->modul_id]);
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $image_extension = $image->getClientOriginalExtension();
@@ -123,6 +119,7 @@ class AdsContentController extends Controller
             ], 500);
         }
     }
+
     public function destroy($id)
     {
         try {

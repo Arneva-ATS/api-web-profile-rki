@@ -10,8 +10,15 @@ class CooperativeBranchController extends Controller
     //
     public function index()
     {
-        $cooperativeBranch = Cooperative_Branch::all();
-        return json_encode($cooperativeBranch);
+        try {
+            $cooperativeBranch = Cooperative_Branch::all();
+            return json_encode($cooperativeBranch);
+        } catch (\Throwable $err) {
+            return response()->json([
+                'response_code' => '01',
+                'response_message' => $err->getMessage()
+            ], 400);
+        }
     }
 
     public function store(Request $request)

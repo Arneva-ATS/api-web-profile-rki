@@ -46,7 +46,10 @@ class NewsCategoryController extends Controller
     {
         try {
             $NewsCategory_update = NewsCategory::findOrFail($id);
-            $NewsCategory_update->update(['modul_id' => $request->modul_id, 'category_name' => $request->category_name]);
+            $request->modul_id ? $NewsCategory_update->modul_id = $request->modul_id : '';
+            $request->category_name ? $NewsCategory_update->category_name = $request->category_name : '';
+
+            // $NewsCategory_update->update(['modul_id' => $request->modul_id, 'category_name' => $request->category_name]);
             $NewsCategory_update->save();
             return response()->json([
                 'response_code' => '00',

@@ -10,8 +10,15 @@ class ModulController extends Controller
     //
     public function index()
     {
-        $modul = Modul::all();
-        return json_encode($modul);
+        try {
+            $modul = Modul::all();
+            return json_encode($modul);
+        } catch (\Throwable $err) {
+            return response()->json([
+                'response_code' => '01',
+                'response_message' => $err->getMessage()
+            ], 400);
+        }
     }
 
     public function store(Request $request)

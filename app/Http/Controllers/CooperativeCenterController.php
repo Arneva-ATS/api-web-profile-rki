@@ -10,8 +10,15 @@ class CooperativeCenterController extends Controller
     //
     public function index()
     {
-        $cooperativeCenter = Cooperative_Center::all();
-        return json_encode($cooperativeCenter);
+        try {
+            $cooperativeCenter = Cooperative_Center::all();
+            return json_encode($cooperativeCenter);
+        } catch (\Throwable $err) {
+            return response()->json([
+                'response_code' => '01',
+                'response_message' => $err->getMessage()
+            ], 400);
+        }
     }
 
     public function store(Request $request)
